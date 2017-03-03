@@ -225,6 +225,7 @@ win = 0
 def display_all_card():
     global selected
     global switch_on
+    global game_over
 
     cor = [0] * 2
     fill_background()
@@ -325,7 +326,10 @@ def display_all_card():
     
     screen.blit(new_game_image, ((screen_width - new_game_image.get_width())//2,screen_height - 150))
     
-    screen.blit(num_to_cards(all_card[cardp]), dock_xy)
+    if cardp > 51:
+        game_over = True
+    else:
+        screen.blit(num_to_cards(all_card[cardp]), dock_xy)
     
     if True == selected:
         if cardp < 51:
@@ -458,7 +462,7 @@ def assign_card():
     
     cardp += 1
     
-    if 53 == cardp:
+    if cardp > 52:
         game_over = True
     else:
         return all_card[cardp-1]
@@ -589,6 +593,8 @@ def main():
             exist6_card = [-1] * (max_of_card + 1)
             all_card    = [x for x in range(52)]
         
+            cardp = 0
+            
             random.shuffle(all_card)
             exist1_card[0] = assign_card()
             exist2_card[0] = assign_card()
@@ -601,7 +607,6 @@ def main():
             connect_mark = [0, 0, 0, 1, 1, 1]
             connect_xy = [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)]
             
-            cardp = 0
             win = 0
             dock_xy = (50, (screen_height//2 + 3*P_1c.get_height()))
             select_card_xy = dock_xy
