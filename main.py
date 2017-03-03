@@ -6,6 +6,13 @@ from pygame.locals import *
 from sys import exit
 
 background_image_filename = 'Image/Nostalgy.gif'
+game_over_filename = 'Image/game_over.gif'
+new_game_filename = 'Image/New_Game_logo.gif'
+on_path  = 'Image/on.gif'
+off_path = 'Image/off.gif'
+win_path = 'Image/win.gif'
+add_path = 'Image/add.gif'
+sub_path = 'Image/sub.gif'
 iP_1c = 'Image/01c.gif'
 iP_1d = 'Image/01d.gif'
 iP_1h = 'Image/01h.gif'
@@ -67,6 +74,13 @@ screen = pygame.display.set_mode(SCREEN_SIZE, 0, 32)#SCREEN_SIZE, FULLSCREEN, 32
 pygame.display.set_caption("AS Arrow")
 
 background = pygame.image.load(background_image_filename).convert()
+game_over_image = pygame.image.load(game_over_filename).convert()
+new_game_image = pygame.image.load(new_game_filename).convert()
+on_image = pygame.image.load(on_path).convert()
+off_image = pygame.image.load(off_path).convert()
+win_image = pygame.image.load(win_path).convert()
+add_image = pygame.image.load(add_path).convert()
+sub_image = pygame.image.load(sub_path).convert()
 P1c = pygame.image.load(iP_1c).convert()
 P1d = pygame.image.load(iP_1d).convert()
 P1h = pygame.image.load(iP_1h).convert()
@@ -203,62 +217,122 @@ cardp = 0
 dock_xy = (50, (screen_height//2 + 3*P_1c.get_height()))
 select_card_xy = dock_xy
 selected = False
+game_over = False
+new_game = True
+switch_on = 1
+win = 0
 
 def display_all_card():
     global selected
+    global switch_on
 
+    cor = [0] * 2
     fill_background()
     
     if exist1_card[0] != -1:
         screen.blit(num_to_cards(exist1_card[0]),card1_position)
+        if 1 == switch_on and 1 == connect_mark[0]:
+            screen.blit(add_image, (card1_position[0]+40, card1_position[1]-24))
         i = 1
         while exist1_card[i] != -1:
             screen.blit(num_to_cards(exist1_card[i]), (card1_position[0]  - i*P_1c.get_width(), card1_position[1]))
+            if 1 == switch_on:
+                if 1 == i%2:
+                    screen.blit(sub_image, (card1_position[0]  - i*P_1c.get_width()+40, card1_position[1]-24))
+                else:
+                    screen.blit(add_image, (card1_position[0]  - i*P_1c.get_width()+40, card1_position[1]-24))
             i += 1
         
         
     if exist2_card[0] != -1:
         screen.blit(num_to_cards(exist2_card[0]),card2_position)
+        if 1 == switch_on and 1 == connect_mark[1]:
+            screen.blit(add_image, (card2_position[0]+40, card2_position[1]-24))
         i = 1
         while exist2_card[i] != -1:
             screen.blit(num_to_cards(exist2_card[i]), (card2_position[0]  - i*P_1c.get_width(), card2_position[1]))
+            if 1 == switch_on:
+                if 1 == i%2:
+                    screen.blit(sub_image, (card2_position[0]  - i*P_1c.get_width()+40, card2_position[1]-24))
+                else:
+                    screen.blit(add_image, (card2_position[0]  - i*P_1c.get_width()+40, card2_position[1]-24))
             i += 1
             
     if exist3_card[0] != -1:
         screen.blit(num_to_cards(exist3_card[0]),card3_position)
+        if 1 == switch_on and 1 == connect_mark[2]:
+            screen.blit(add_image, (card3_position[0]+40, card3_position[1]-24))
         i = 1
         while exist3_card[i] != -1:
             screen.blit(num_to_cards(exist3_card[i]), (card3_position[0]  - i*P_1c.get_width(), card3_position[1]))
+            if 1 == switch_on:
+                if 1 == i%2:
+                    screen.blit(sub_image, (card3_position[0]  - i*P_1c.get_width()+40, card3_position[1]-24))
+                else:
+                    screen.blit(add_image, (card3_position[0]  - i*P_1c.get_width()+40, card3_position[1]-24))
             i += 1
             
     if exist4_card[0] != -1:
         screen.blit(num_to_cards(exist4_card[0]),card4_position)
+        if 1 == switch_on and 1 == connect_mark[3]:
+            screen.blit(add_image, (card4_position[0]+40, card4_position[1]-24))
         i = 1
         while exist4_card[i] != -1:
             screen.blit(num_to_cards(exist4_card[i]), (card4_position[0]  - i*P_1c.get_width(), card4_position[1]))
+            if 1 == switch_on:
+                if 1 == i%2:
+                    screen.blit(sub_image, (card4_position[0]  - i*P_1c.get_width()+40, card4_position[1]-24))
+                else:
+                    screen.blit(add_image, (card4_position[0]  - i*P_1c.get_width()+40, card4_position[1]-24))
             i += 1
             
     if exist5_card[0] != -1:
         screen.blit(num_to_cards(exist5_card[0]),card5_position)
+        if 1 == switch_on and 1 == connect_mark[4]:
+            screen.blit(add_image, (card5_position[0]+40, card5_position[1]-24))
         i = 1
         while exist5_card[i] != -1:
             screen.blit(num_to_cards(exist5_card[i]), (card5_position[0]  - i*P_1c.get_width(), card5_position[1]))
+            if 1 == switch_on:
+                if 1 == i%2:
+                    screen.blit(sub_image, (card5_position[0]  - i*P_1c.get_width()+40, card5_position[1]-24))
+                else:
+                    screen.blit(add_image, (card5_position[0]  - i*P_1c.get_width()+40, card5_position[1]-24))
             i += 1
             
     if exist6_card[0] != -1:
         screen.blit(num_to_cards(exist6_card[0]),card6_position)
+        if 1 == switch_on and 1 == connect_mark[5]:
+            screen.blit(add_image, (card6_position[0]+40, card6_position[1]-24))
         i = 1
         while exist6_card[i] != -1:
             screen.blit(num_to_cards(exist6_card[i]), (card6_position[0]  - i*P_1c.get_width(), card6_position[1]))
+            if 1 == switch_on:
+                if 1 == i%2:
+                    screen.blit(sub_image, (card6_position[0]  - i*P_1c.get_width()+40, card6_position[1]-24))
+                else:
+                    screen.blit(add_image, (card6_position[0]  - i*P_1c.get_width()+40, card6_position[1]-24))
             i += 1
-
-    screen.blit(write("Information"),(screen_width -250,screen_height - 150))
+    
+    screen.blit(write("Cheat"),(screen_width -250, screen_height - 150))
+    
+    if 1 == switch_on:
+        screen.blit(on_image, (screen_width - 160, screen_height - 200))
+        screen.blit(write("ON", (230,225,121)),(screen_width -50,screen_height - 150))
+    else:
+        screen.blit(off_image, (screen_width - 160, screen_height - 200))
+        screen.blit(write("OFF"),(screen_width -50,screen_height - 150))
+    
+    screen.blit(new_game_image, ((screen_width - new_game_image.get_width())//2,screen_height - 150))
     
     screen.blit(num_to_cards(all_card[cardp]), dock_xy)
     
     if True == selected:
-        screen.blit(num_to_cards(all_card[cardp]), select_card_xy)
-        screen.blit(num_to_cards(all_card[cardp+1]), dock_xy)
+        if cardp < 51:
+            screen.blit(num_to_cards(all_card[cardp]), select_card_xy)
+            screen.blit(num_to_cards(all_card[cardp+1]), dock_xy)
+        elif 51 == cardp:
+            screen.blit(num_to_cards(all_card[cardp]), select_card_xy)
         
 def num_to_cards(num):
     if 0==num:
@@ -368,7 +442,7 @@ def num_to_cards(num):
 
 
 def write(msg="pygame is cool", color= (0,0,0)):    
-    myfont = pygame.font.Font("FreeSansBold.ttf",14)
+    myfont = pygame.font.Font("FreeSansBold.ttf",24)
     mytext = myfont.render(msg, True, color)
     mytext = mytext.convert_alpha()
     return mytext        
@@ -384,14 +458,17 @@ def assign_card():
     
     cardp += 1
     
-    return all_card[cardp-1]
+    if 53 == cardp:
+        game_over = True
+    else:
+        return all_card[cardp-1]
             
 def move(x, y):
     (mouseX, mouseY) = pygame.mouse.get_pos()
     dx = mouseX - x
     dy = mouseY - y
-    dx -= P_1c.get_size()[0]/2
-    dy -= P_1c.get_size()[1]/2
+    dx -= P_1c.get_size()[0]//2
+    dy -= P_1c.get_size()[1]//2
     angle = 0.5*math.pi + math.atan2(dy, dx)
     speed = math.hypot(dx, dy) * 0.1
     x += math.sin(angle) * speed
@@ -430,45 +507,56 @@ def check_xy(index):
 
 def op_connect_mark(deleted_i):
     global connect_mark
+    global win
     
-    if 6 == deleted_i:
+    if 5 == deleted_i:
         connect_mark[5] = 0
         if 0 == connect_mark[4]:
             connect_mark[2] = 1
-    elif 5 == deleted_i:
+    elif 4 == deleted_i:
         connect_mark[4] = 0
         if 0 == connect_mark[5]:
             connect_mark[2] = 1
         elif 0 == connect_mark[3]:
             connect_mark[1] = 1
-    elif 4 == deleted_i:
+    elif 3 == deleted_i:
         connect_mark[3] = 0
         if 0 == connect_mark[4]:
             connect_mark[1] = 1
-    elif 3 == deleted_i:
+    elif 2 == deleted_i:
         connect_mark[2] = 0
         if 0 == connect_mark[1]:
             connect_mark[0] = 1
-    elif 2 == deleted_i:
+    elif 1 == deleted_i:
         connect_mark[1] = 0
         if 0 == connect_mark[2]:
             connect_mark[0] = 1
+    elif 0 == deleted_i:
+        win = 1
     
 def check_card_sum(index):
+    global game_over
+    
     exist_card, card_position = index_to_exist_card(index)
     
     i = 1
-    sum = exist_card[0]/4 + 1
+    sum = (exist_card[0]//4 + 1)
     while exist_card[i] != -1:
         if 0 == i%2 :
-            sum +=  exist_card[i]/4 + 1
+            sum += (exist_card[i]//4 + 1)
         else:
-            sum -= (exist_card[i]/4 + 1)
+            sum -= (exist_card[i]//4 + 1)
         i += 1
     
     if 0 == sum:
         op_connect_mark(index)
         exist_card[0] = -1
+    elif 52 == cardp:
+        game_over = True
+    elif exist_card[max_of_card - 1] != -1:
+        game_over = True
+    elif 1 == switch_on:
+        screen.blit(write("%d" % sum, (24,132,74)),(card_position[0] + 40, card_position[1] + 24))
     
 def main():
     global all_card
@@ -482,28 +570,65 @@ def main():
     global select_card_xy
     global connect_xy
     global connect_mark
-
-    random.shuffle(all_card)
-    exist1_card[0] = assign_card()
-    exist2_card[0] = assign_card()
-    exist3_card[0] = assign_card()
-    exist4_card[0] = assign_card()
-    exist5_card[0] = assign_card()
-    exist6_card[0] = assign_card()
-    
-    #test only
-    #exist4_card = [13,12,11,10,9,8,7,6,5,4,3, -1]
+    global game_over
+    global new_game
+    global cardp
+    global dock_xy
+    global select_card_xy
+    global selected
+    global switch_on
+    global win
     
     while True:
+        if True == new_game:
+            exist1_card = [-1] * (max_of_card + 1)
+            exist2_card = [-1] * (max_of_card + 1)
+            exist3_card = [-1] * (max_of_card + 1)
+            exist4_card = [-1] * (max_of_card + 1)
+            exist5_card = [-1] * (max_of_card + 1)
+            exist6_card = [-1] * (max_of_card + 1)
+            all_card    = [x for x in range(52)]
+        
+            random.shuffle(all_card)
+            exist1_card[0] = assign_card()
+            exist2_card[0] = assign_card()
+            exist3_card[0] = assign_card()
+            exist4_card[0] = assign_card()
+            exist5_card[0] = assign_card()
+            exist6_card[0] = assign_card()
+                      
+            # 0: can't connect card, 1: can connect card
+            connect_mark = [0, 0, 0, 1, 1, 1]
+            connect_xy = [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)]
+            
+            cardp = 0
+            win = 0
+            dock_xy = (50, (screen_height//2 + 3*P_1c.get_height()))
+            select_card_xy = dock_xy
+            selected = False
+            game_over = False
+            new_game = False
+    
         if selected == True:
             select_card_xy = move(select_card_xy[0], select_card_xy[1])
         
         display_all_card()
     
-        pygame.display.update()
+        if True == game_over:
+            screen.blit(game_over_image, ((screen_width - game_over_image.get_width())//2, (screen_height - game_over_image.get_height())//2))
+            new_game = True
+            pygame.display.update()
+            time.sleep(5)
+        elif 1 == win:
+            screen.blit(win_image, ((screen_width - win_image.get_width())//2, (screen_height - win_image.get_height())//2))
+            new_game = True
+            pygame.display.update()
+            time.sleep(5)
         
         for i in range(6):
             check_card_sum(i)
+        
+        pygame.display.update()
         
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -512,6 +637,10 @@ def main():
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 if dock_xy[0] < mouseX < dock_xy[0] + P_1c.get_width() and dock_xy[1] < mouseY < dock_xy[1] + P_1c.get_height():
                     selected = True
+                elif (screen_width - new_game_image.get_width())//2 < mouseX < (screen_width + new_game_image.get_width())//2 and screen_height - 150 < mouseY < screen_height - 150 + new_game_image.get_height():
+                    new_game = True
+                elif screen_width - 160 < mouseX < screen_width - 160 + on_image.get_width() and screen_height - 200 < mouseY < screen_height - 200 + on_image.get_height():
+                    switch_on = 1 - switch_on
             elif event.type == MOUSEBUTTONUP:
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 if True == selected:
