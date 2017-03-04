@@ -5,6 +5,9 @@ import math
 from pygame.locals import *
 from sys import exit
 
+s_capture = 'Sound/MOVE2.WAV'
+s_win     = 'Sound/WIN.WAV'
+
 background_image_filename = 'Image/Nostalgy.gif'
 game_over_filename = 'Image/game_over.gif'
 new_game_filename = 'Image/New_Game_logo.gif'
@@ -72,6 +75,9 @@ pygame.init()
 pygame.display.set_icon(pygame.image.load("Image/as_arrow.png"))
 screen = pygame.display.set_mode(SCREEN_SIZE, 0, 32)#SCREEN_SIZE, FULLSCREEN, 32)
 pygame.display.set_caption("AS Arrow")
+
+capture_sound = pygame.mixer.Sound(s_capture)
+win_sound     = pygame.mixer.Sound(s_win)
 
 background = pygame.image.load(background_image_filename).convert()
 game_over_image = pygame.image.load(game_over_filename).convert()
@@ -328,15 +334,14 @@ def display_all_card():
     
     if cardp > 51:
         game_over = True
-    else:
-        screen.blit(num_to_cards(all_card[cardp]), dock_xy)
-    
-    if True == selected:
+    elif True == selected:
         if cardp < 51:
             screen.blit(num_to_cards(all_card[cardp]), select_card_xy)
             screen.blit(num_to_cards(all_card[cardp+1]), dock_xy)
         elif 51 == cardp:
             screen.blit(num_to_cards(all_card[cardp]), select_card_xy)
+    elif False == selected and cardp < 52:
+        screen.blit(num_to_cards(all_card[cardp]), dock_xy)
         
 def num_to_cards(num):
     if 0==num:
@@ -553,6 +558,7 @@ def check_card_sum(index):
         i += 1
     
     if 0 == sum:
+        capture_sound.play()
         op_connect_mark(index)
         exist_card[0] = -1
     elif 52 == cardp:
@@ -628,6 +634,7 @@ def main():
             screen.blit(win_image, ((screen_width - win_image.get_width())//2, (screen_height - win_image.get_height())//2))
             new_game = True
             pygame.display.update()
+            win_sound.play()
             time.sleep(5)
         
         for i in range(6):
