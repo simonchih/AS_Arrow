@@ -656,6 +656,7 @@ def main():
                             if cx < mouseX < cx + P_1c.get_width() and cy < mouseY < cy + P_1c.get_height():    
                                 exist_card, card_position = index_to_exist_card(i)
                                 exist_card[p] = assign_card()
+                                break
                 selected = False                        
                     
     exit()
