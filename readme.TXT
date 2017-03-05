@@ -15,16 +15,16 @@ e a
 f
 
 User can connect d, e, f cards. Once d and e are deleted, user can connect to b.
-Cards are positive for a, b, c, d, e, f. And then card is negative while connecting. 
-In a similar way, the next card is positive (do the add), and then the card is negative
-(do the subtract). The row of cards can be deleted as sum of cards is 0. 
-But be carefully, if the number of cards is 12, but can't be deleted now,
-The game is over. By the way, if cards library is empty and user can't win, 
-the game is over.
+It's similarly to c and a. Cards are positive for a, b, c, d, e, f. 
+And then card is negative while connecting. In a similar way, 
+the next card is positive (do the add), and then the card is negative (do the subtract).
+The row of cards can be deleted as sum of cards is 0. 
+But be carefully, if the number of cards is 12, but can't be deleted now, The game is over.
+By the way, if cards library is empty and user can't win, the game is over.
 
 Note: 
 1. Click "NEW GAME!" can start a new game.
-2. Click cheat image (NOT text), can ON/OFF cheat information. Cheat is ON by default.
+2. Click cheat image (NOT word), can ON/OFF cheat information. Cheat is ON by default.
 But I suggest OFF, to play real AS Arrow.
 
 Following README is for chinese:
@@ -41,7 +41,7 @@ e a
  c
 f
 
-只能接d, e, f的牌，a, b, c, d, e, f的牌是正(整數)的，再來接的牌是負的，
+只能接d, e, f 的牌，a, b, c, d, e, f 的牌是正(整數)的，再來接的牌是負的，
 換句話說就是做相減的動作。之後再接的牌，是正的，也就是相加。
 相加之後的牌又是相減，如此相加、相減，一直重複下去。
 假如加或減起來的牌，剛好是0，就可以整牌消掉。如果一開始的d跟e，都消除，
