@@ -231,7 +231,6 @@ win = 0
 def display_all_card():
     global selected
     global switch_on
-    global game_over
 
     cor = [0] * 2
     fill_background()
@@ -248,8 +247,7 @@ def display_all_card():
                     screen.blit(sub_image, (card1_position[0]  - i*P_1c.get_width()+40, card1_position[1]-24))
                 else:
                     screen.blit(add_image, (card1_position[0]  - i*P_1c.get_width()+40, card1_position[1]-24))
-            i += 1
-        
+            i += 1       
         
     if exist2_card[0] != -1:
         screen.blit(num_to_cards(exist2_card[0]),card2_position)
@@ -332,9 +330,7 @@ def display_all_card():
     
     screen.blit(new_game_image, ((screen_width - new_game_image.get_width())//2,screen_height - 150))
     
-    if cardp > 51:
-        game_over = True
-    elif True == selected:
+    if True == selected:
         if cardp < 51:
             screen.blit(num_to_cards(all_card[cardp]), select_card_xy)
             screen.blit(num_to_cards(all_card[cardp+1]), dock_xy)
@@ -561,7 +557,8 @@ def check_card_sum(index):
         capture_sound.play()
         op_connect_mark(index)
         exist_card[0] = -1
-    elif 52 == cardp:
+        exist_card[i-1] = -1
+    elif cardp > 51:
         game_over = True
     elif exist_card[max_of_card - 1] != -1:
         game_over = True
@@ -608,7 +605,7 @@ def main():
             exist4_card[0] = assign_card()
             exist5_card[0] = assign_card()
             exist6_card[0] = assign_card()
-                      
+            
             # 0: can't connect card, 1: can connect card
             connect_mark = [0, 0, 0, 1, 1, 1]
             connect_xy = [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)]
