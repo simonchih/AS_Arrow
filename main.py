@@ -558,6 +558,7 @@ def check_card_sum(index):
         op_connect_mark(index)
         exist_card[0] = -1
         exist_card[i-1] = -1
+        print("k")
     elif cardp > 51:
         game_over = True
     elif exist_card[max_of_card - 1] != -1:
@@ -635,7 +636,8 @@ def main():
             time.sleep(5)
         
         for i in range(6):
-            check_card_sum(i)
+            if 1 == connect_mark[i]:
+                check_card_sum(i)
         
         pygame.display.update()
         
