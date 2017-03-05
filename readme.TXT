@@ -1,6 +1,9 @@
 Card image source: PySol cardset
 http://sourceforge.net/projects/pysolfc/?source=directory
 
+Sound source (XiangQi Wizard):
+https://sourceforge.net/projects/xqwizard/?source=directory
+
 Game Name:
 AS refer to Add and Sub. During the game process, the card present as Arrow.
 
