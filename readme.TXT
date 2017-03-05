@@ -16,9 +16,9 @@ f
 
 User can connect d, e, f cards. Once d and e are deleted, user can connect to b.
 Cards are positive for a, b, c, d, e, f. And then card is negative while connecting. 
-As same similarly, the next card is positive (do the add), and then the card is negative
+In a similar way, the next card is positive (do the add), and then the card is negative
 (do the subtract). The row of cards can be deleted as sum of cards is 0. 
-But be carefully, if the number of cards is 12, but can't be deleted now.
+But be carefully, if the number of cards is 12, but can't be deleted now,
 The game is over. By the way, if cards library is empty and user can't win, 
 the game is over.
 
