@@ -208,8 +208,8 @@ exist4_card = [-1] * (max_of_card + 1)
 exist5_card = [-1] * (max_of_card + 1)
 exist6_card = [-1] * (max_of_card + 1)
 all_card    = [x for x in range(52)]
-# 0: can't connect card, 1: can connect card
-connect_mark = [0, 0, 0, 1, 1, 1]
+# 0: can't connect card, 1: can connect card, -1: ini
+connect_mark = [-1, -1, -1, 1, 1, 1]
 connect_xy = [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)]
 
 card1_position = (screen_width-P_1c.get_width()-1, (screen_height - P_1c.get_height())//2)
@@ -607,16 +607,16 @@ def main():
             exist6_card[0] = assign_card()
             
             # Test to win
-            #all_card[cardp]   = exist6_card[0]
+            #all_card[cardp]   = exist4_card[0]
             #all_card[cardp+1] = exist5_card[0]
-            #all_card[cardp+2] = exist4_card[0]
-            #all_card[cardp+3] = exist3_card[0]
-            #all_card[cardp+4] = exist2_card[0]
+            #all_card[cardp+2] = exist2_card[0]
+            #all_card[cardp+3] = exist6_card[0]
+            #all_card[cardp+4] = exist3_card[0]
             #all_card[cardp+5] = exist1_card[0]
             # End test to win
             
-            # 0: can't connect card, 1: can connect card
-            connect_mark = [0, 0, 0, 1, 1, 1]
+            # 0: can't connect card, 1: can connect card, -1: ini
+            connect_mark = [-1, -1, -1, 1, 1, 1]
             connect_xy = [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)]
             
             win = 0
