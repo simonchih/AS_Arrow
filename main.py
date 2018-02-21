@@ -522,7 +522,7 @@ def op_connect_mark(deleted_i):
         connect_mark[4] = 0
         if 0 == connect_mark[5]:
             connect_mark[2] = 1
-        elif 0 == connect_mark[3]:
+        if 0 == connect_mark[3]:
             connect_mark[1] = 1
     elif 3 == deleted_i:
         connect_mark[3] = 0
