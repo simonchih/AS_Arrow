@@ -332,8 +332,8 @@ def display_all_card():
     
     if True == selected:
         if cardp < 51:
-            screen.blit(num_to_cards(all_card[cardp]), select_card_xy)
             screen.blit(num_to_cards(all_card[cardp+1]), dock_xy)
+            screen.blit(num_to_cards(all_card[cardp]), select_card_xy)
         elif 51 == cardp:
             screen.blit(num_to_cards(all_card[cardp]), select_card_xy)
     elif False == selected and cardp < 52:
