@@ -207,6 +207,7 @@ exist3_card = [-1] * (max_of_card + 1)
 exist4_card = [-1] * (max_of_card + 1)
 exist5_card = [-1] * (max_of_card + 1)
 exist6_card = [-1] * (max_of_card + 1)
+move_card_seq = [-1] * (max_of_card + 1)
 all_card    = [x for x in range(52)]
 # 0: can't connect card, 1: can connect card, -1: ini
 connect_mark = [-1, -1, -1, 1, 1, 1]
@@ -217,19 +218,23 @@ card2_position = (screen_width-P_1c.get_width()-P_1c.get_width()//2-1, (screen_h
 card3_position = (screen_width-P_1c.get_width()-P_1c.get_width()//2-1, (screen_height - P_1c.get_height())//2 + 2*P_1c.get_height()//3)
 card4_position = (screen_width-P_1c.get_width()-P_1c.get_width()-1, (screen_height - P_1c.get_height())//2 - 4*P_1c.get_height()//3)
 card5_position = (screen_width-P_1c.get_width()-P_1c.get_width()-1, (screen_height - P_1c.get_height())//2)
-card6_position =(screen_width-P_1c.get_width()-P_1c.get_width()-1, (screen_height - P_1c.get_height())//2 + 4*P_1c.get_height()//3)
+card6_position = (screen_width-P_1c.get_width()-P_1c.get_width()-1, (screen_height - P_1c.get_height())//2 + 4*P_1c.get_height()//3)
 
 cardp = 0
 dock_xy = (50, (screen_height//2 + 3*P_1c.get_height()))
 select_card_xy = dock_xy
 selected = False
+select_first_card_seq_xy = (0, 0) # (0, 0) is ini only
+select_card_seq = False
+pull_index = -1
+pull_card_index = -1
 game_over = False
 new_game = True
 switch_on = 1
 win = 0
 
 def display_all_card():
-    global selected
+    #global selected
     global switch_on
 
     cor = [0] * 2
@@ -338,6 +343,12 @@ def display_all_card():
             screen.blit(num_to_cards(all_card[cardp]), select_card_xy)
     elif False == selected and cardp < 52:
         screen.blit(num_to_cards(all_card[cardp]), dock_xy)
+
+    if True == select_card_seq:
+        i = 0
+        while move_card_seq[i] != -1: # length of card seq is max_of_card + 1, but maximum of i is max_of_card, so last card is always -1.
+            screen.blit(num_to_cards(move_card_seq[i]), (select_first_card_seq_xy[0]  - i*P_1c.get_width(), select_first_card_seq_xy[1]))
+            i += 1 
         
 def num_to_cards(num):
     if 0==num:
@@ -493,7 +504,45 @@ def index_to_exist_card(index):
         return exist5_card, card5_position
     elif 5 == index:
         return exist6_card, card6_position
-        
+
+def len_of_card(index):
+
+    exist_card, _card_position = index_to_exist_card(index)
+
+    i = 0 # first card is 0, i is index of card in exist_card
+    while i < len(exist_card) and exist_card[i] != -1:
+        i += 1
+    
+    # maximum i is max_of_card + 1
+    return i # 0 ~ i-1 card, length is i
+
+def check_pull_card_seq(index, mouseX, mouseY):
+    
+    exist_card, card_position = index_to_exist_card(index)
+    (temp_x, temp_y) = card_position
+
+    i = 1 # first card is 0, i is index of card in exist_card
+    while exist_card[i] != -1:
+        (temp_x, temp_y) = (card_position[0]  - i*P_1c.get_width(), card_position[1])
+        if temp_x <= mouseX <= (temp_x + P_1c.get_width()) and temp_y <= mouseY <= (temp_y + P_1c.get_height()):
+            return index, i, temp_x, temp_y
+        i += 1
+
+    return None, -1, -1, -1
+
+def check_put_card_seq():
+
+    for i in range(6):
+        if 1 == connect_mark[i]:
+            print("connect_mark", i) #debug
+            check_xy(i)
+            (temp_x, temp_y) = connect_xy[i]
+            mouseX, mouseY = pygame.mouse.get_pos()
+            if temp_x <= mouseX <= (temp_x + P_1c.get_width()) and temp_y <= mouseY <= (temp_y + P_1c.get_height()):
+                print("put to", i) #debug
+                return i
+    return -1
+
 def check_xy(index):
     global connect_xy
 
@@ -575,14 +624,17 @@ def main():
     global exist6_card
     global selected
     global select_card_xy
+    global select_card_seq
+    global select_first_card_seq_xy
+    global move_card_seq
+    global pull_index
+    global pull_card_index
     global connect_xy
     global connect_mark
     global game_over
     global new_game
     global cardp
     global dock_xy
-    global select_card_xy
-    global selected
     global switch_on
     global win
     
@@ -623,11 +675,14 @@ def main():
             dock_xy = (50, (screen_height//2 + 3*P_1c.get_height()))
             select_card_xy = dock_xy
             selected = False
+            select_card_seq = False
             game_over = False
             new_game = False
     
         if selected == True:
             select_card_xy = move(select_card_xy[0], select_card_xy[1])
+        elif select_card_seq == True:
+            select_first_card_seq_xy = move(select_first_card_seq_xy[0], select_first_card_seq_xy[1])
         
         display_all_card()
     
@@ -660,6 +715,39 @@ def main():
                     new_game = True
                 elif screen_width - 160 < mouseX < screen_width - 160 + on_image.get_width() and screen_height - 200 < mouseY < screen_height - 200 + on_image.get_height():
                     switch_on = 1 - switch_on
+                else:
+                    for index in range(6):
+                        if 1 == connect_mark[index]:
+                            pull_index, pull_card_index,  x, y= check_pull_card_seq(index, mouseX, mouseY)
+                            select_first_card_seq_xy = (x, y)
+                            if None != pull_index:
+                                select_card_seq = True
+                                selected = False
+                                break
+                    if 0 == pull_index:
+                        len_card = len_of_card(pull_index)
+                        move_card_seq[0:len_card] = exist1_card[pull_card_index:len_card]
+                        exist1_card[pull_card_index:len_card] = [-1] * (len_card - pull_card_index)
+                    elif 1 == pull_index:
+                        len_card = len_of_card(pull_index)
+                        move_card_seq[0:len_card] = exist2_card[pull_card_index:len_card]
+                        exist2_card[pull_card_index:len_card] = [-1] * (len_card - pull_card_index)
+                    elif 2 == pull_index:
+                        len_card = len_of_card(pull_index)
+                        move_card_seq[0:len_card] = exist3_card[pull_card_index:len_card]
+                        exist3_card[pull_card_index:len_card] = [-1] * (len_card - pull_card_index)
+                    elif 3 == pull_index:
+                        len_card = len_of_card(pull_index)
+                        move_card_seq[0:len_card] = exist4_card[pull_card_index:len_card]
+                        exist4_card[pull_card_index:len_card] = [-1] * (len_card - pull_card_index)
+                    elif 4 == pull_index:
+                        len_card = len_of_card(pull_index)
+                        move_card_seq[0:len_card] = exist5_card[pull_card_index:len_card]
+                        exist5_card[pull_card_index:len_card] = [-1] * (len_card - pull_card_index)
+                    elif 5 == pull_index:
+                        len_card = len_of_card(pull_index)
+                        move_card_seq[0:len_card] = exist6_card[pull_card_index:len_card]
+                        exist6_card[pull_card_index:len_card] = [-1] * (len_card - pull_card_index)
             elif event.type == MOUSEBUTTONUP:
                 (mouseX, mouseY) = pygame.mouse.get_pos()
                 if True == selected:
@@ -671,7 +759,125 @@ def main():
                                 exist_card, card_position = index_to_exist_card(i)
                                 exist_card[p] = assign_card()
                                 break
-                selected = False                        
+                selected = False
+                
+                if True == select_card_seq:
+                    put_index = check_put_card_seq()
+                    if -1 != put_index:
+                        if 0 == put_index:
+                            len_card = len_of_card(put_index)
+                            
+                            i = 0
+                            while i < len(move_card_seq) and move_card_seq[i] != -1:
+                                i += 1
+                            
+                            if len_card + i > max_of_card + 1:
+                                select_card_seq = False
+                            else:
+                                exist1_card[len_card:len_card + i] = move_card_seq[0:len_card + i]
+                                move_card_seq = [-1] * (max_of_card + 1)
+
+                        elif 1 == put_index:
+                            len_card = len_of_card(put_index)
+                            
+                            i = 0
+                            while i < len(move_card_seq) and move_card_seq[i] != -1:
+                                i += 1
+                            
+                            if len_card + i > max_of_card + 1:
+                                select_card_seq = False
+                            else:
+                                exist2_card[len_card:len_card + i] = move_card_seq[0:len_card + i]
+                                move_card_seq = [-1] * (max_of_card + 1)
+                        elif 2 == put_index:
+                            len_card = len_of_card(put_index)
+                            
+                            i = 0
+                            while i < len(move_card_seq) and move_card_seq[i] != -1:
+                                i += 1
+                            
+                            if len_card + i > max_of_card + 1:
+                                select_card_seq = False
+                            else:
+                                exist3_card[len_card:len_card + i] = move_card_seq[0:len_card + i]
+                                move_card_seq = [-1] * (max_of_card + 1)
+                        elif 3 == put_index:
+                            len_card = len_of_card(put_index)
+                            
+                            i = 0
+                            while i < len(move_card_seq) and move_card_seq[i] != -1:
+                                i += 1
+                            
+                            if len_card + i > max_of_card + 1:
+                                select_card_seq = False
+                            else:
+                                exist4_card[len_card:len_card + i] = move_card_seq[0:len_card + i]
+                                move_card_seq = [-1] * (max_of_card + 1)
+                        elif 4 == put_index:
+                            len_card = len_of_card(put_index)
+                            
+                            i = 0
+                            while i < len(move_card_seq) and move_card_seq[i] != -1:
+                                i += 1
+                            
+                            if len_card + i > max_of_card + 1:
+                                select_card_seq = False
+                            else:
+                                exist5_card[len_card:len_card + i] = move_card_seq[0:len_card + i]
+                                move_card_seq = [-1] * (max_of_card + 1)
+                        elif 5 == put_index:
+                            len_card = len_of_card(put_index)
+                            
+                            i = 0
+                            while i < len(move_card_seq) and move_card_seq[i] != -1:
+                                i += 1
+                            
+                            if len_card + i > max_of_card + 1:
+                                select_card_seq = False
+                            else:
+                                exist6_card[len_card:len_card + i] = move_card_seq[0:len_card + i]
+                                move_card_seq = [-1] * (max_of_card + 1)
+
+                if move_card_seq[0] != -1: # recover card seq
+                    if 0 == pull_index:
+                        i = 0
+                        while i < len(move_card_seq) and move_card_seq[i] != -1:
+                            i += 1
+                        exist1_card[pull_card_index:pull_card_index + i] = move_card_seq[0:i]
+                        move_card_seq = [-1] * (max_of_card + 1)
+                    elif 1 == pull_index:
+                        i = 0
+                        while i < len(move_card_seq) and move_card_seq[i] != -1:
+                            i += 1
+                        exist2_card[pull_card_index:pull_card_index + i] = move_card_seq[0:i]
+                        move_card_seq = [-1] * (max_of_card + 1)
+                    elif 2 == pull_index:
+                        i = 0
+                        while i < len(move_card_seq) and move_card_seq[i] != -1:
+                            i += 1
+                        exist3_card[pull_card_index:pull_card_index + i] = move_card_seq[0:i]
+                        move_card_seq = [-1] * (max_of_card + 1)
+                    elif 3 == pull_index:
+                        i = 0
+                        while i < len(move_card_seq) and move_card_seq[i] != -1:
+                            i += 1
+                        exist4_card[pull_card_index:pull_card_index + i] = move_card_seq[0:i]
+                        move_card_seq = [-1] * (max_of_card + 1)
+                    elif 4 == pull_index:
+                        i = 0
+                        while i < len(move_card_seq) and move_card_seq[i] != -1:
+                            i += 1
+                        exist5_card[pull_card_index:pull_card_index + i] = move_card_seq[0:i]
+                        move_card_seq = [-1] * (max_of_card + 1)
+                    elif 5 == pull_index:
+                        i = 0
+                        while i < len(move_card_seq) and move_card_seq[i] != -1:
+                            i += 1
+                        exist6_card[pull_card_index:pull_card_index + i] = move_card_seq[0:i]
+                        move_card_seq = [-1] * (max_of_card + 1)
+                select_card_seq = False
+                pull_index = -1 
+                pull_card_index = -1                    
                     
     exit()
 		
