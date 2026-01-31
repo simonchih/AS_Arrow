@@ -27,6 +27,7 @@ By the way, if cards library is empty and user can't win, the game is over.
 
 Starting from v0.1.1, you can move an entire pile (except the first one) to another pile.
 If the front half of a pile becomes 0 after applying +/?, you must click the pile of the next card in the back half (the one right after the 0) for the front half to be removed automatically.
+If the original pile is cleared while you are dragging, releasing the drag will put the card into the deck.
 
 Note: 
 1. Click "NEW GAME!" can start a new game.
@@ -60,6 +61,7 @@ f
 從v 0.1.1開始，可以移動除了第一張以外的整個牌列，到另一個牌列。
 若是牌列中的某前半段加減後是0，
 需點選加減後是0的下一張後半段的牌列，才會自動刪除前半段。
+若是托曳中原本的牌列已經消除，此時停止托曳會把牌放入牌庫。
 
 其它：
 1. 按中間的NEW GAME!圖樣，可以重新開始遊戲

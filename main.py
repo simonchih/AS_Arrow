@@ -779,7 +779,7 @@ def main():
                             #print("i = ", i, "move_card_seq", move_card_seq) # debug
                             cardp -= i # card may duplicate
                             for j in range(i):
-                                all_card[cardp + j] = move_card_seq[i - j - 1]
+                                all_card[cardp + j] = move_card_seq[j]
                                 #print("j = ", j, "all_card", all_card[cardp + j]) # debug
                                 #print("cardp", cardp) # debug
                             #print("After all_card", all_card) # debug
