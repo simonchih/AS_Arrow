@@ -35,12 +35,12 @@ Note:
 But I suggest OFF, to play real AS Arrow.
 
 Following README is for chinese:
-¹CÀ¸¦WºÙ¡GAS Arrow
-Â²¤¶¡GAS´N¬O¥[(Add)©M´î(Subtract)¡AArrow«üªº¬O¡A¹CÀ¸¹Lµ{¡A¬Ý°_¨ÓµPªº§Îª¬¹³½bÀY¡C
-³o­Ó¹CÀ¸¬O°V½mª±®aªº¥[´îªk¡A©M°O¾Ð¤O¡C
+éŠæˆ²åç¨±ï¼šAS Arrow
+ç°¡ä»‹ï¼šASå°±æ˜¯åŠ (Add)å’Œæ¸›(Subtract)ï¼ŒArrowæŒ‡çš„æ˜¯ï¼ŒéŠæˆ²éŽç¨‹ï¼Œçœ‹èµ·ä¾†ç‰Œçš„å½¢ç‹€åƒç®­é ­ã€‚
+é€™å€‹éŠæˆ²æ˜¯è¨“ç·´çŽ©å®¶çš„åŠ æ¸›æ³•ï¼Œå’Œè¨˜æ†¶åŠ›ã€‚
 
-ª±ªk¡G¹CÀ¸ªº¥Øªº¡A´N¬O­n®ø°£©Ò¦³ªºµP¡C³o­Ó¹CÀ¸ªºµP®w¦b¥ª¤U¨¤¡A
-¦«¦²µP®wªºµP¡A¥i¥H±µ¤W¥h­ì¥»ªºµP¡C¤@¶}©lªºµP§Î¬O¡G
+çŽ©æ³•ï¼šéŠæˆ²çš„ç›®çš„ï¼Œå°±æ˜¯è¦æ¶ˆé™¤æ‰€æœ‰çš„ç‰Œã€‚é€™å€‹éŠæˆ²çš„ç‰Œåº«åœ¨å·¦ä¸‹è§’ï¼Œ
+æ‰˜æ›³ç‰Œåº«çš„ç‰Œï¼Œå¯ä»¥æŽ¥ä¸ŠåŽ»åŽŸæœ¬çš„ç‰Œã€‚ä¸€é–‹å§‹çš„ç‰Œå½¢æ˜¯ï¼š
 
 d
  b
@@ -48,23 +48,23 @@ e a
  c
 f
 
-¥u¯à±µd, e, f ªºµP¡Aa, b, c, d, e, f ªºµP¬O¥¿(¾ã¼Æ)ªº¡A¦A¨Ó±µªºµP¬O­tªº¡A
-´«¥y¸Ü»¡´N¬O°µ¬Û´îªº°Ê§@¡C¤§«á¦A±µªºµP¡A¬O¥¿ªº¡A¤]´N¬O¬Û¥[¡C
-¬Û¥[¤§«áªºµP¤S¬O¬Û´î¡A¦p¦¹¬Û¥[¡B¬Û´î¡A¤@ª½­«½Æ¤U¥h¡C
-°²¦p¥[©Î´î°_¨ÓªºµP¡A¤@ª½¨ìµP¾ã¦C­è¦n¬O0¡A´N¥i¥H¾ã±ÆµP®ø±¼¡C
-¦pªG¤@¶}©lªºd¸òe¡A³£®ø°£¡A
-´N¥i¥H¶}©l±µbªºµP¡C¦P²z¡A¦pªGb¸òcªºµP³£®ø°£¡A´N¯à±µaªºµP¡C
-¤@¦ýa¦CªºµP³£®ø°£¡A´NÀò±o³Ì«áªº³Ó§Q¡C¥t¥~¡A¦pªG¤@¦CµP¹F¨ì12±i¡A
-ÁÙ¬O¤£¯à®ø°£¡A´N·|¥ß¨èµ²§ô¹CÀ¸¡C¦ÓµP®w©âµP©â§¹³Ì«á¤@±i¡AÁÙ¬O¥¼¯à¨ú±o³Ó§Q¡A
-¤]·|µ²§ô¹CÀ¸¡C
+åªèƒ½æŽ¥d, e, f çš„ç‰Œï¼Œa, b, c, d, e, f çš„ç‰Œæ˜¯æ­£(æ•´æ•¸)çš„ï¼Œå†ä¾†æŽ¥çš„ç‰Œæ˜¯è² çš„ï¼Œ
+æ›å¥è©±èªªå°±æ˜¯åšç›¸æ¸›çš„å‹•ä½œã€‚ä¹‹å¾Œå†æŽ¥çš„ç‰Œï¼Œæ˜¯æ­£çš„ï¼Œä¹Ÿå°±æ˜¯ç›¸åŠ ã€‚
+ç›¸åŠ ä¹‹å¾Œçš„ç‰Œåˆæ˜¯ç›¸æ¸›ï¼Œå¦‚æ­¤ç›¸åŠ ã€ç›¸æ¸›ï¼Œä¸€ç›´é‡è¤‡ä¸‹åŽ»ã€‚
+å‡å¦‚åŠ æˆ–æ¸›èµ·ä¾†çš„ç‰Œï¼Œä¸€ç›´åˆ°ç‰Œæ•´åˆ—å‰›å¥½æ˜¯0ï¼Œå°±å¯ä»¥æ•´æŽ’ç‰Œæ¶ˆæŽ‰ã€‚
+å¦‚æžœä¸€é–‹å§‹çš„dè·Ÿeï¼Œéƒ½æ¶ˆé™¤ï¼Œ
+å°±å¯ä»¥é–‹å§‹æŽ¥bçš„ç‰Œã€‚åŒç†ï¼Œå¦‚æžœbè·Ÿcçš„ç‰Œéƒ½æ¶ˆé™¤ï¼Œå°±èƒ½æŽ¥açš„ç‰Œã€‚
+ä¸€ä½†aåˆ—çš„ç‰Œéƒ½æ¶ˆé™¤ï¼Œå°±ç²å¾—æœ€å¾Œçš„å‹åˆ©ã€‚å¦å¤–ï¼Œå¦‚æžœä¸€åˆ—ç‰Œé”åˆ°12å¼µï¼Œ
+é‚„æ˜¯ä¸èƒ½æ¶ˆé™¤ï¼Œå°±æœƒç«‹åˆ»çµæŸéŠæˆ²ã€‚è€Œç‰Œåº«æŠ½ç‰ŒæŠ½å®Œæœ€å¾Œä¸€å¼µï¼Œé‚„æ˜¯æœªèƒ½å–å¾—å‹åˆ©ï¼Œ
+ä¹ŸæœƒçµæŸéŠæˆ²ã€‚
 
-±qv 0.1.1¶}©l¡A¥i¥H²¾°Ê°£¤F²Ä¤@±i¥H¥~ªº¾ã­ÓµP¦C¡A¨ì¥t¤@­ÓµP¦C¡C
-­Y¬OµP¦C¤¤ªº¬Y«e¥b¬q¥[´î«á¬O0¡A
-»ÝÂI¿ï¥[´î«á¬O0ªº¤U¤@±i«á¥b¬qªºµP¦C¡A¤~·|¦Û°Ê§R°£«e¥b¬q¡C
-­Y¬O¦«¦²¤¤­ì¥»ªºµP¦C¤w¸g®ø°£¡A¦¹®É°±¤î¦«¦²·|§âµP©ñ¤JµP®w¡C
+å¾žv 0.1.1é–‹å§‹ï¼Œå¯ä»¥ç§»å‹•é™¤äº†ç¬¬ä¸€å¼µä»¥å¤–çš„æ•´å€‹ç‰Œåˆ—ï¼Œåˆ°å¦ä¸€å€‹ç‰Œåˆ—ã€‚
+è‹¥æ˜¯ç‰Œåˆ—ä¸­çš„æŸå‰åŠæ®µåŠ æ¸›å¾Œæ˜¯0ï¼Œ
+éœ€é»žé¸åŠ æ¸›å¾Œæ˜¯0çš„ä¸‹ä¸€å¼µå¾ŒåŠæ®µçš„ç‰Œåˆ—ï¼Œæ‰æœƒè‡ªå‹•åˆªé™¤å‰åŠæ®µã€‚
+è‹¥æ˜¯æ‰˜æ›³ä¸­åŽŸæœ¬çš„ç‰Œåˆ—å·²ç¶“æ¶ˆé™¤ï¼Œæ­¤æ™‚åœæ­¢æ‰˜æ›³æœƒæŠŠç‰Œæ”¾å…¥ç‰Œåº«ã€‚
 
-¨ä¥¦¡G
-1. «ö¤¤¶¡ªºNEW GAME!¹Ï¼Ë¡A¥i¥H­«·s¶}©l¹CÀ¸
-2. «öcheat¶}Ãöªº¹Ï¼Ë(«D¤å¦r)¡A¥i¥HON/OFF ´£¥Üªº¸ê°T¡A¬°¤Fªì¾ÇªÌ¤è«K¡A
-¹w³]¬O¶}ªº¡C¤£¹LÃö³¬cheat¡A¤~¬O¯u¥¿ªºAS Arrow.
-3. J©MK¹Ï¤ùªº®t§O¬O¡AJÀ¹¥þ¬õªº´U¤l¡A¢ÙÀ¹¤@±ø¬õ½u¡A¤W­±¬O¶À¦âªº´U¤l
+å…¶å®ƒï¼š
+1. æŒ‰ä¸­é–“çš„NEW GAME!åœ–æ¨£ï¼Œå¯ä»¥é‡æ–°é–‹å§‹éŠæˆ²
+2. æŒ‰cheaté–‹é—œçš„åœ–æ¨£(éžæ–‡å­—)ï¼Œå¯ä»¥ON/OFF æç¤ºçš„è³‡è¨Šï¼Œç‚ºäº†åˆå­¸è€…æ–¹ä¾¿ï¼Œ
+é è¨­æ˜¯é–‹çš„ã€‚ä¸éŽé—œé–‰cheatï¼Œæ‰æ˜¯çœŸæ­£çš„AS Arrow.
+3. Jå’ŒKåœ–ç‰‡çš„å·®åˆ¥æ˜¯ï¼ŒJæˆ´å…¨ç´…çš„å¸½å­ï¼Œï¼«æˆ´ä¸€æ¢ç´…ç·šï¼Œä¸Šé¢æ˜¯é»ƒè‰²çš„å¸½å­
