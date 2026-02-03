@@ -757,7 +757,7 @@ def main():
                         while i < len(move_card_seq) and move_card_seq[i] != -1:
                             i += 1
                         
-                        if len_card + i > max_of_card + 1:
+                        if len_card + i > max_of_card:
                             select_card_seq = False
                         else:
                             all_exist_card[put_index][len_card:len_card + i] = move_card_seq[0:len_card + i]
